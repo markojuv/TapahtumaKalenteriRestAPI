@@ -57,6 +57,14 @@ namespace TapahtumaRestAPI.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            using (EventDBContext db = new EventDBContext())
+            {
+                Tapahtumat t = db.Tapahtumat.Find(id);
+
+                db.Tapahtumat.Remove(t);
+                db.SaveChanges();
+
+            }
         }
     }
 }
