@@ -49,8 +49,22 @@ namespace TapahtumaRestAPI.Controllers
 
         // PUT: api/Tapahtuma/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] Tapahtumat tapahtumat)
         {
+            using (EventDBContext db = new EventDBContext())
+            {
+                Tapahtumat t = db.Tapahtumat.Find(id);
+                t.Hinta = tapahtumat.Hinta;
+                t.Ikäraja = tapahtumat.Ikäraja;
+                t.Kategoria = tapahtumat.Kategoria;
+                t.Kuva = tapahtumat.Kuva;
+                t.Kuvaus = tapahtumat.Kuvaus;
+                t.Linkki = tapahtumat.Linkki;
+                t.Nimi = tapahtumat.Nimi;
+                t.Päivämäärä = tapahtumat.Päivämäärä;
+                t.Sijainti = tapahtumat.Sijainti;
+                db.SaveChanges();
+            }
         }
 
         // DELETE: api/ApiWithActions/5
