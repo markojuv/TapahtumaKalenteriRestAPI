@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TapahtumaKalenteriLib\TapahtumaLib.csproj" />
+    <ProjectReference Include="..\TapahtumaLib\TapahtumaLib.csproj" />
   </ItemGroup>
 
 </Project>
