@@ -34,8 +34,13 @@ namespace TapahtumaRestAPI.Controllers
 
         // POST: api/Tapahtuma
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Tapahtumat tapahtumat)
         {
+            using (EventDBContext db = new EventDBContext())
+            {
+                db.Tapahtumat.Add(tapahtumat);
+                db.SaveChanges();
+            }
         }
 
         // PUT: api/Tapahtuma/5
