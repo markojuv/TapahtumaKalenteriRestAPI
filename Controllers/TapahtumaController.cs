@@ -36,6 +36,16 @@ namespace TapahtumaRestAPI.Controllers
             }
         }
 
+        [HttpGet("Search/{nimi}", Name = "Search")]
+        public IEnumerable<Tapahtumat> GetByName(string nimi)
+        {
+            using (EventDBContext db = new EventDBContext())
+            {
+                var tapahtuma = db.Tapahtumat.Where(a => a.Nimi.ToLower().Contains(nimi.ToLower())).ToList();
+                return tapahtuma;
+            }
+        }
+
         // POST: api/Tapahtuma
         [HttpPost]
         public void Post([FromBody] Tapahtumat tapahtumat)
