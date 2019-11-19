@@ -27,9 +27,13 @@ namespace TapahtumaRestAPI.Controllers
 
         // GET: api/Tapahtuma/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public Tapahtumat Get(int id)
         {
-            return "value";
+            using (EventDBContext db = new EventDBContext())
+            {
+                Tapahtumat t = db.Tapahtumat.Where(a => a.TapahtumaId == id).FirstOrDefault();
+                return t;
+            }
         }
 
         // POST: api/Tapahtuma
