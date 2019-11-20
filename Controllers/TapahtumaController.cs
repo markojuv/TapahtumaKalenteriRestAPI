@@ -33,6 +33,7 @@ namespace TapahtumaRestAPI.Controllers
             {
                 Tapahtumat t = db.Tapahtumat.Where(a => a.TapahtumaId == id).FirstOrDefault();
                 return t;
+
             }
         }
 
@@ -43,6 +44,7 @@ namespace TapahtumaRestAPI.Controllers
             {
                 var tapahtuma = db.Tapahtumat.Where(a => a.Nimi.ToLower().Contains(nimi.ToLower())).ToList();
                 return tapahtuma;
+
             }
         }
 
