@@ -21,7 +21,6 @@ namespace TapahtumaRestAPI.Controllers
             using (EventDBContext db = new EventDBContext())
             {
                 return t.KaikkiTapahtumat();
-
             }
         }
 
