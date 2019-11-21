@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GoogleMaps.LocationServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TapahtumaLib;
@@ -13,6 +14,9 @@ namespace TapahtumaRestAPI.Controllers
     [ApiController]
     public class TapahtumaController : ControllerBase
     {
+
+        string apikey = "";
+
         Tapahtuma t = new Tapahtuma();
         // GET: api/Tapahtuma
         [HttpGet]
@@ -53,6 +57,10 @@ namespace TapahtumaRestAPI.Controllers
         {
             using (EventDBContext db = new EventDBContext())
             {
+                var paikkapalvelu = new GoogleLocationService(apikey);
+                var latlong = paikkapalvelu.GetLatLongFromAddress(tapahtumat.Sijainti);
+                tapahtumat.Lat = latlong.Latitude;
+                tapahtumat.Long = latlong.Longitude;
                 db.Tapahtumat.Add(tapahtumat);
                 db.SaveChanges();
             }
@@ -65,6 +73,10 @@ namespace TapahtumaRestAPI.Controllers
             using (EventDBContext db = new EventDBContext())
             {
                 Tapahtumat t = db.Tapahtumat.Find(id);
+                var paikkapalvelu = new GoogleLocationService(apikey);
+                var latlong = paikkapalvelu.GetLatLongFromAddress(t.Sijainti);
+                t.Lat = latlong.Latitude;
+                t.Long = latlong.Longitude;
                 t.Hinta = tapahtumat.Hinta;
                 t.Ikäraja = tapahtumat.Ikäraja;
                 t.Kategoria = tapahtumat.Kategoria;
