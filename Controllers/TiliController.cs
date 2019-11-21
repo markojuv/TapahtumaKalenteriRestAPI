@@ -23,9 +23,26 @@ namespace TapahtumaRestAPI.Controllers
 
         //// GET: api/Tili/5
         //[HttpGet("{id}", Name = "Get")]
-        //public string Get(int id)
+        //public OmatTapahtumat HaeOmat(int kayttajaId, int tapahtumaId)
         //{
-        //    return "value";
+        //    using (EventDBContext db = new EventDBContext())
+        //    {
+        //        OmatTapahtumat o;
+        //        o.KayttajaId = db.Kayttajat.Where(a => a.KayttajaId == kayttajaId).FirstOrDefault();
+        //        var tapahtuma = db.Tapahtumat.Where(a => a.TapahtumaId == tapahtumaId).FirstOrDefault();
+                
+                
+        //    }
+        //}
+        //[HttpGet("{id}", Name = "Get")]
+        //public Tapahtumat Get(int id)
+        //{
+        //    using (EventDBContext db = new EventDBContext())
+        //    {
+        //        Tapahtumat t = db.Tapahtumat.Where(a => a.TapahtumaId == id).FirstOrDefault();
+        //        return t;
+
+        //    }
         //}
 
         // POST: api/Tili
